@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <input class="form-control" type="date" value="<?php echo $row['dob']?>" name="dob" placeholder="DoB yyyy-mm-dd" required>
+                        <input class="form-control" type="date" id="datepicker" value="<?php echo $row['dob']?>" name="dob" placeholder="DoB yyyy-mm-dd" required>
                     </div>
                 </div>
             </div>
