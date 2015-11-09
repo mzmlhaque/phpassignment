@@ -24,7 +24,7 @@ if($rank != 'admin'){
     if(!empty(trim($_POST['first_name'])) || !empty(trim($_POST['email'])))
     {
         //$sql="UPDATE user SET name = '$fname','$lname','$dob','$address','$user','$crimes','$password' WHERE id=$id;";
-        $sql = "UPDATE `user` SET `fname`= '$fname' WHERE id = $id";
+        $sql = "UPDATE `user` SET `fname`= $fname' WHERE id = $id";
         //$sql="UPDATE user SET fname = $fname, lname = $lname, dob = $dob, address = $address, email = $email, crimes = $crimes, password = '$password' WHERE id=$id;";
         $preparestatement=$dbcon->prepare($sql);
         $preparestatement->execute();
