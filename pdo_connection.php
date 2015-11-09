@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: rajesh
- * Date: 11/1/15
+ * User: Mozammel
+ * Date: 11/5/15
  * Time: 10:20 AM
  */
 class connect
