@@ -59,6 +59,7 @@ $html = <<<login_template
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Sign in</title>
     <!-- Bootstrap -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/5379a5938fa1ea4e1cba8034/537efd4a7b58dcd03527229e_favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
@@ -108,7 +109,7 @@ $html = <<<login_template
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="http://aponsite.com" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                    <a href="http:signup.php" tabindex="5" class="forgot-password">Open an Account</a>
                                                 </div>
                                             </div>
                                         </div>
