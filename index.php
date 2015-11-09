@@ -36,7 +36,7 @@ $data = $dbcon->query($sql);
             ?>
             <div class="col-md-3">
                 <div class="criminal">
-                    <h4 class="name"><?php echo $row['fname'].' '. $row['lname']?></h4>
+                    <a href="public-profile.php?id=<?php echo $row['id']?>"><h4 class="name"><?php echo $row['fname'].' '. $row['lname']?></h4></a>
                     <div class="image">
                         <img src="images/<?php echo $row['picture']?>">
                     </div>
