@@ -8,13 +8,22 @@
  */
 error_reporting(0);
 session_start();
-$name = $_SESSION['fname'].' '. $_SESSION['lname'];
-$image = $_SESSION['picture'];
-$email = $_SESSION['user'];
-$address = $_SESSION['address'];
-$date = $_SESSION['dob'];
-$crimes = $_SESSION['crimes'];
+include('pdo_connection.php');
+include('database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
 $id = $_SESSION['id'];
+$sql="SELECT * FROM user WHERE id=$id";
+$data = $dbcon->query($sql);
+$row = $data->fetch(PDO::FETCH_ASSOC);
+$name = $row['fname'].' '. $_SESSION['lname'];
+$image = $row['picture'];
+$email = $row['email'];
+$address = $row['address'];
+$date = $row['dob'];
+$crimes = $row['crimes'];
 
 
 ?>
@@ -30,6 +39,7 @@ $id = $_SESSION['id'];
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/5379a5938fa1ea4e1cba8034/537efd4a7b58dcd03527229e_favicon.ico">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,100,900,900italic,400italic,700,300italic,300' rel='stylesheet' type='text/css'>
 
     <!-- Custom Fonts -->
@@ -78,7 +88,7 @@ $id = $_SESSION['id'];
                     <li class="active"><a href="index.php">Home</a></li>
                     <?php
                     if(isset($_SESSION['rank']) && $_SESSION['rank'] =='admin'){
-                        echo "<li><a href=\"admin/index.html\">Dashboard</a></li>";
+                        echo "<li><a href=\"admin/index.php\">Dashboard</a></li>";
                     }
                     else{
                         echo" ";
