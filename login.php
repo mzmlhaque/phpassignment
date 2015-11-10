@@ -9,8 +9,8 @@ $db_name=$database_name;
 $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
 if(isset($_POST['login']))
 {
-$Email=$_POST['useremail'];
-$Pass=$_POST['password'];
+$Email=htmlentities($_POST['useremail']);
+$Pass=htmlentities($_POST['password']);
 $sql="SELECT * FROM user WHERE email='$Email' AND password='$Pass'";
 $data = $dbcon->query($sql);
 $row = $data->fetch(PDO::FETCH_ASSOC);
