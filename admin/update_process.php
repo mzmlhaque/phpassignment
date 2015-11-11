@@ -11,6 +11,9 @@ if($rank != 'admin'){
     $db_pass =$databse_pass;
     $db_name=$database_name;
     $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+    $sql="SELECT * FROM user WHERE email = '$user'";
+    $data = $dbcon->query($sql);
+    $row = $data->fetch(PDO::FETCH_ASSOC);
     if($rank = 'admin')
     {
     $id=htmlentities($_POST['id']);
@@ -24,13 +27,17 @@ if($rank != 'admin'){
     $password=htmlentities($_POST['password']);
     if(!empty(trim($_POST['first_name'])) || !empty(trim($_POST['email'])))
     {
-        //$sql="UPDATE user SET name = '$fname','$lname','$dob','$address','$user','$crimes','$password' WHERE id=$id;";
-        $sql = "UPDATE user SET fname = '$fname', lname = '$lname', dob = '$dob', crimes = '$crimes', address = '$address', email = '$email' WHERE id =$id;";
-        //$sql="UPDATE user SET fname = $fname, lname = $lname, dob = $dob, address = $address, email = $email, crimes = $crimes, password = '$password' WHERE id=$id;";
-        $preparestatement=$dbcon->prepare($sql);
-        $preparestatement->execute();
-        echo("<script>alert('Successfully update..!!')</script>");
-        echo("<script>location.href='index.php'</script>");
+        if($email == $row['email'] && $id !=$row['id'] ){
+            echo("<script>alert('This email is used by another user')</script>");
+            echo("<script>location.href=\"update.php?id=$id\"</script>");
+
+        }else{
+            $sql = "UPDATE user SET fname = '$fname', lname = '$lname', dob = '$dob', crimes = '$crimes', address = '$address', email = '$email' WHERE id =$id;";
+            $preparestatement=$dbcon->prepare($sql);
+            $preparestatement->execute();
+            echo("<script>alert('Successfully update..!!')</script>");
+            echo("<script>location.href='index.php'</script>");
+        }
     }
     else
     {
