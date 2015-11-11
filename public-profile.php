@@ -17,7 +17,7 @@ $id = $_GET['id'];
 $sql="SELECT * FROM user WHERE id=$id";
 $data = $dbcon->query($sql);
 $row = $data->fetch(PDO::FETCH_ASSOC);
-$name = $row['fname'].' '. $_SESSION['lname'];
+$name = $row['fname']. ' '. $row['lname'];
 $image = $row['picture'];
 $email = $row['email'];
 $address = $row['address'];
