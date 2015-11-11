@@ -5,7 +5,25 @@
  * Date: 11/9/2015
  * Time: 10:22 PM
  */
+$fname = htmlentities($_POST['first_name']);
+$lname = htmlentities($_POST['last_name']);
+$user = htmlentities($_POST['email']);
+$user = strtolower($user);
+$address = htmlentities($_POST['address']);
+$crimes = htmlentities($_POST['crimes']);
+$password = ($_POST['password']);
+$dob = htmlentities($_POST['dob']);
+$rank = 'user';
 include_once('inc/header.php');
+include_once('pdo_connection.php');
+include_once('database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+$sql="SELECT email FROM user WHERE email = '$user'";
+$data = $dbcon->query($sql);
+$row = $data->fetch(PDO::FETCH_ASSOC);
 if(isset($_POST['submit'])){
     $file = $_FILES['image'];
     $image_name = $file['name'];
@@ -15,32 +33,28 @@ if(isset($_POST['submit'])){
     $image_error = $file['error'];
     $accept = array('jpg','jpeg','png');
     $temp = explode(".", $image_name);
-    if($file['size']>=50000){
+    if($user== $row['email']){
+        echo("<script>alert('This email id is already used. Please login')</script>");
+        echo("<script>location.href='login.php'</script>");
+    }
+    elseif($file['size']>=50000){
         echo("<script>alert('Image size is not allowed')</script>");
         echo("<script>location.href='signup.php'</script>");
-    }elseif(!in_array(end($temp), $accept))
+    }
+    elseif(!in_array(end($temp), $accept))
     {
         echo("<script>alert('please upload jpg or png file')</script>");
         echo("<script>location.href='signup.php'</script>");
     }
-
     else
     {
         $newfilename = round(microtime(true)) . '.' . end($temp);
         move_uploaded_file($image_temp,"images/$newfilename");
         echo "<img src=\"images/$newfilename\">";
-        $fname = htmlentities($_POST['first_name']);
-        $lname = htmlentities($_POST['last_name']);
-        $user = htmlentities($_POST['email']);
-        $address = htmlentities($_POST['address']);
-        $crimes = htmlentities($_POST['crimes']);
-        $password = htmlentities($_POST['password']);
-        $dob = htmlentities($_POST['dob']);
-        $rank = 'user';
         $picture = $newfilename;
         session_start();
-        include('pdo_connection.php');
-        include('database_config.php');
+        include_once('pdo_connection.php');
+        include_once('database_config.php');
         $db_user =$database_user;
         $db_pass =$databse_pass;
         $db_name=$database_name;
