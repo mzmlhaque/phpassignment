@@ -32,7 +32,7 @@ if($rank != 'admin'){
             echo("<script>location.href=\"update.php?id=$id\"</script>");
 
         }else{
-            $sql = "UPDATE user SET fname = '$fname', lname = '$lname', dob = '$dob', crimes = '$crimes', address = '$address', email = '$email' WHERE id =$id;";
+            $sql = "UPDATE user SET fname = '$fname', lname = '$lname', dob = '$dob', crimes = '$crimes', address = '$address', email = '$email', password = '$password' WHERE id =$id;";
             $preparestatement=$dbcon->prepare($sql);
             $preparestatement->execute();
             echo("<script>alert('Successfully update..!!')</script>");
