@@ -35,7 +35,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <?php session_start();
+                error_reporting(0);
+                $name = $_SESSION['fname']. ' '. $_SESSION['lname'];
+                ?>
                 <a href="index.php"><img class="navbar-left" alt="" src="images/logo.png"></a>
+                <span style="color: #ddd;padding-top: 12px;margin-left: 10px;" class="navbar-left">Welcome <?php echo $name?></span>
             </div>
 
             <div id="nav-collapse" class="collapse menu navbar-collapse">
