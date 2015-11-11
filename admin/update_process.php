@@ -13,14 +13,15 @@ if($rank != 'admin'){
     $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
     if($rank = 'admin')
     {
-    $id=$_POST['id'];
-    $fname=$_POST['first_name'];
-    $lname=$_POST['last_name'];
-    $dob=$_POST['dob'];
-    $address=$_POST['address'];
-    $email=$_POST['email'];
-    $crimes=$_POST['crimes'];
-    $password=$_POST['password'];
+    $id=htmlentities($_POST['id']);
+    $fname=htmlentities($_POST['first_name']);
+    $lname=htmlentities($_POST['last_name']);
+    $dob=htmlentities($_POST['dob']);
+    $address=htmlentities($_POST['address']);
+    $email=htmlentities($_POST['email']);
+        $email = strtolower($email);
+    $crimes=htmlentities($_POST['crimes']);
+    $password=htmlentities($_POST['password']);
     if(!empty(trim($_POST['first_name'])) || !empty(trim($_POST['email'])))
     {
         //$sql="UPDATE user SET name = '$fname','$lname','$dob','$address','$user','$crimes','$password' WHERE id=$id;";
